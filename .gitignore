@@ -1,0 +1,53 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+web_resources/
+
+# Build and Compilation Artifacts
+dist/
+build/
+bin/
+out/
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+env/
+venv/
+
+# Environment and Secrets
+.env
+.env.*
+!.env.example
+secrets.json
+
+# IDE / Editor config
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# Diagnostic and Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# System Files
+.DS_Store
+Thumbs.db
