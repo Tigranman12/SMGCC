@@ -5,7 +5,7 @@ Build a custom C compiler from scratch that is exceptionally small, highly effic
 
 ## Key Architectural Inspirations
 *   **TinyCC (Fabrice Bellard):** Pragmatic, fast, and minimalistic code generation.
-*   **META II (Val Schorre) & VPRI STEPS (Alan Kay):** Utilizing a metacompiler/pattern-matching engine (Domain-Specific Languages) to define syntax rules rather than writing massive, hand-coded recursive descent parsers.
+*   **META II (Val Schorre) & VPRI STEPS (Alan Kay):** Utilizing a metacompiler/pattern-matching engine (Domain-Specific Languages) to define syntax rules rather than writing massive, hand-coded recursive descent parsers. META II is the direct Stage 1 model: grammar-driven recognition plus explicit output actions.
 
 ## Development & Engineering Philosophy
 *   **Strict Test-Driven Development (TDD):** Every feature must begin with a failing test.
@@ -34,7 +34,7 @@ To maintain absolute focus and prevent the AI from hallucinating or losing conte
 # Project Milestones
 
 *   **Stage 0:** Scaffolding, Git setup, and CI/testing framework initialization.
-*   **Stage 1 (Metacompiler):** Build a tiny pattern-matching engine (Parsing Expression Grammars) to read syntax rules.
+*   **Stage 1 (META II Metacompiler):** Build a tiny META II-style pattern-matching engine with PEG-like ordered choice to read syntax rules and emit structured parser/AST output.
 *   **Stage 2 (Lexing/Parsing):** Use the metacompiler to parse a subset of C into an Abstract Syntax Tree (AST).
 *   **Stage 3 (Semantic Analysis):** Implement symbol tables to verify types and variable declarations.
 *   **Stage 4 (Intermediate Representation):** Flatten the AST into linear Three-Address Code (IR).

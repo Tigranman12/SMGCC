@@ -14,10 +14,12 @@ This document establishes the foundational design, engineering, and architectura
 - **Avoid Over-Engineering:** No "just in case" features, extra abstractions, or future-proofing. Solve the problem in front of you as simply and elegantly as possible.
 - **Tiny Source:** Keep file lengths short, code blocks highly cohesive, and dependencies close to zero.
 
-## 3. The Metacompiler Paradigm
-- **Parser Generation:** We do not write large, manual, recursive descent parsers. We describe the language rules using a Parsing Expression Grammar (PEG) domain-specific language (DSL).
+## 3. The META II Metacompiler Paradigm
+- **Historical Model:** Stage 1 follows the META II idea from Val Schorre: grammar rules drive recognition, and rules may emit structured output actions.
+- **Parser Generation:** We do not write large, manual, recursive descent parsers. We describe language rules using a small META II-style grammar DSL with PEG-like ordered choice.
 - **Self-Generating:** Our parser must be parsed by a parser that our metacompiler generates. This bootstrap loop is vital for self-hosting.
 - **Pattern Matching:** Use declarative pattern matching rather than convoluted procedural parsing states wherever possible.
+- **Output Actions:** Generated AST or compiler IR should come from explicit rule actions, not scattered ad hoc parser code.
 
 ## 4. Stability & Historical Logging
 - **The Bug Loop Rule:** If a regression or logical loop occurs, development stops. 

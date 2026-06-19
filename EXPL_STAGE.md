@@ -1,4 +1,4 @@
-# Stage 1: The Metacompiler (PEG Pattern-Matching Engine)
+# Stage 1: The META II Metacompiler
 ### *A Senior-to-Junior Developer Guide to Parsing magic*
 
 ---
@@ -10,7 +10,9 @@ This stage is usually the one that makes people's brains do a little backflip. I
 
 **Forget that.** We are not building a parser the tedious way. We are building a *Metacompiler*. 
 
-Instead of writing code that parses C, we are going to write a tiny, extremely smart **pattern-matching engine** based on **Parsing Expression Grammars (PEGs)**. This engine will read a compact text file of syntax rules (a "grammar") and instantly know how to parse inputs. This is the paradigm pioneered by legendary computer scientists like **Val Schorre (META II)** and **Alan Kay (VPRI)**. It keeps our codebase tiny, incredibly modular, and elegant.
+Instead of writing code that parses C, we are going to write a tiny **META II-style pattern-matching engine**. This engine reads a compact text file of syntax rules, recognizes input with PEG-style ordered choice/backtracking, and attaches output actions to rules. This is the paradigm pioneered by **Val Schorre (META II)** and later explored in small-language systems like **Alan Kay's VPRI STEPS** work.
+
+The important design choice: **META II is the model, PEG is the matching discipline.** We use META II's grammar-plus-output-action logic, while using modern PEG-style deterministic alternatives to keep behavior predictable.
 
 Grab a coffee, and let's break down how this works!
 
@@ -28,13 +30,13 @@ TRADITIONAL METHOD (Hand-Written Parser)
 +------------------+     +--------------------+     +-------------+
   Issues: Fragile, painful to modify, massive codebase.
 
-OUR METHOD (Metacompiler)
+OUR METHOD (META II-style Metacompiler)
 +------------------+
 | Grammar File     |---\
 | (e.g. c.peg)     |    \
 +------------------+     v
                      +-----------------------+     +---------------+
-                     | Stage 1 Metacompiler  | --> | Parser Engine |
+                     | Stage 1 META II Core  | --> | Parser Engine |
                      | (Parser-Generator)    |     | (Auto-Gen)    |
                      +-----------------------+     +---------------+
                                                           |
@@ -45,6 +47,14 @@ OUR METHOD (Metacompiler)
 ```
 
 By building a pattern matcher that reads a formal definition of language syntax, we make our actual parser incredibly brief and declarative. 
+
+In META II terms, a grammar rule has two jobs:
+
+```text
+rule = pattern-to-recognize .OUT(output-to-produce) ;
+```
+
+For SMGCC, early output actions should produce AST nodes. Later stages can emit lower-level compiler structures.
 
 ---
 
@@ -88,13 +98,13 @@ Once this loop closes, we can extend our language, add complex parsing operators
 
 ---
 
-## 4. Parsing Expression Grammars (PEGs) 101
+## 4. META II Rules With PEG-Style Matching
 
-Before we look at the code, let's understand **PEGs**. PEGs are similar to Context-Free Grammars (CFGs, like BNF/EBNF) but with one huge difference: **they are completely deterministic and unambiguous.**
+Before we look at the code, let's understand the subset we need. META II gives us the metacompiler shape: named rules, pattern matching, and output actions. PEG gives us deterministic matching rules: ordered alternatives, backtracking, and lookahead.
 
 Here are the core operators our pattern-matching engine must support:
 
-### A. Ordered Choice (`/` instead of `|`)
+### A. Ordered Choice (`/`)
 In traditional CFGs, `A | B` means both `A` and `B` are equal alternatives, which can lead to ambiguity (e.g., the dangling-else problem).
 In PEG, we write `A / B`. This means: **"Try to match A. If A succeeds, consume input and stop. Only if A fails, backtrack and try B."**
 Order matters! 
@@ -120,6 +130,17 @@ If the input is `iffy`, `if` matches, but the negative lookahead `!identifier_ch
 - `expr*`: Zero or more matches (greedy, consumes as much as possible).
 - `expr+`: One or more matches.
 - `expr?`: Optional match (zero or one).
+
+### D. Output Actions (`.OUT(...)`)
+META II rules can produce output while they match. We keep this idea, but the first useful output target is an AST node, not raw assembly.
+
+```text
+number = digit+ .OUT(Number(text)) ;
+factor = number / '(' expression ')' ;
+term   = factor (('*' / '/') factor)* .OUT(BinaryTree(...)) ;
+```
+
+The syntax above is illustrative. The final DSL can be smaller, but it must preserve the idea that output is attached to grammar rules.
 
 ---
 
@@ -193,24 +214,25 @@ type MatchResult =
 ```
 
 ### The AST Representation of Rules
-The PEG engine will process rules. We can represent rules as node types:
+The META II engine will process grammar rules. We can represent rules as node types:
 
 ```typescript
-type PEGNode =
+type MetaNode =
   | { type: 'terminal'; value: string }                 // Literal e.g., "if"
   | { type: 'character_range'; start: string; end: string } // [a-z]
-  | { type: 'sequence'; expressions: PEGNode[] }         // Rule A followed by Rule B
-  | { type: 'ordered_choice'; expressions: PEGNode[] }   // A / B
-  | { type: 'zero_or_more'; expression: PEGNode }        // A*
-  | { type: 'negative_lookahead'; expression: PEGNode }  // !A
+  | { type: 'sequence'; expressions: MetaNode[] }         // Rule A followed by Rule B
+  | { type: 'ordered_choice'; expressions: MetaNode[] }   // A / B
+  | { type: 'zero_or_more'; expression: MetaNode }        // A*
+  | { type: 'negative_lookahead'; expression: MetaNode }  // !A
   | { type: 'rule_reference'; name: string }             // Reference to another rule
+  | { type: 'output_action'; name: string; args: string[] } // .OUT(...) style action
 ```
 
 ### The Matching Engine Loop
 Our engine runs a recursive matching loop. Here's the high-level pseudocode of how you implement the matchers:
 
 ```typescript
-function matchNode(node: PEGNode, state: ParseState): MatchResult {
+function matchNode(node: MetaNode, state: ParseState): MatchResult {
   switch (node.type) {
     case 'terminal': {
       const matchLength = node.value.length;
@@ -288,9 +310,9 @@ When parsing fails in a large file, simply saying `"Parse Failed"` is incredibly
 
 Now that you have the mental model, here is what we are going to build when we start Stage 1:
 
-1. **The Matcher Engine:** Implement the pattern-matching types, recursive parser loop, and backtracking logic.
-2. **The Meta-Grammar:** Write the PEG description that specifies the PEG grammar language itself.
-3. **The Bootstrap:** Feed the PEG grammar into our matcher to auto-generate our very own parser parser.
+1. **The META II Matcher Engine:** Implement pattern-matching types, recursive parser loop, backtracking logic, and output-action hooks.
+2. **The Meta-Grammar:** Write the grammar that specifies the META II-style grammar language itself.
+3. **The Bootstrap:** Feed the meta grammar into the matcher to generate our parser parser.
 
 If any of this feels overwhelming, don't sweat it. We are going to build this piece-by-piece, with **TDD guiding every single step**. 
 

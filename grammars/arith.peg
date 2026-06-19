@@ -1,0 +1,11 @@
+# arith.peg — arithmetic grammar for the SMGCC Stage 1 demo.
+#
+# This file is *data*: the seed loader (smgcc/grammar.py) reads it into engine
+# nodes, then the META II/PEG engine runs it. Change the language by editing
+# this file — no parser code to touch. Left-recursion is avoided with the
+# repetition trick (term ('+' term)*), exactly as RULES.md demands.
+
+expr   = term (('+' / '-') term)* -> chain
+term   = factor (('*' / '/') factor)* -> chain
+factor = number / '(' expr ')' -> paren
+number = _ [0-9]+ -> num
