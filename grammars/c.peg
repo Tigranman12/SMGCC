@@ -1,0 +1,39 @@
+# c.peg — a subset of C, as data. The seed loader turns this into engine nodes;
+# the META II/PEG engine parses C source into an AST. Edit the language here.
+#
+# Supported: int functions (params + recursion), local int vars, + - * / %,
+# comparisons (== != < > <= >=), unary - and !, if/else, while, return, calls.
+
+program  = function+ -> program
+function = kw_int ident '(' params ')' block -> func
+params   = (param (',' param)*)? -> params
+param    = kw_int ident -> param
+block    = '{' statement* '}' -> block
+statement = block / return_s / if_s / while_s / decl_s / expr_s
+return_s = kw_return expr ';' -> ret
+if_s     = kw_if '(' expr ')' statement else_s? -> ifs
+else_s   = kw_else statement -> elses
+while_s  = kw_while '(' expr ')' statement -> whiles
+decl_s   = kw_int ident ('=' expr)? ';' -> decl
+expr_s   = expr ';' -> exprstmt
+expr     = assign
+assign   = ident '=' !'=' assign -> assign / equality
+equality = relational (('==' / '!=') relational)* -> chain
+relational = additive (('<=' / '>=' / '<' / '>') additive)* -> chain
+additive = multiplicative (('+' / '-') multiplicative)* -> chain
+multiplicative = unary (('*' / '/' / '%') unary)* -> chain
+unary    = ('-' / '!') unary -> unary / call_or_primary
+call_or_primary = call / primary
+call     = ident '(' args ')' -> call
+args     = (expr (',' expr)*)? -> args
+primary  = number / var / '(' expr ')' -> paren
+var      = ident -> var
+number   = _ [0-9]+ -> num
+ident    = _ idstart idchar* -> ident
+idstart  = [a-z] / [A-Z] / '_'
+idchar   = [a-z] / [A-Z] / [0-9] / '_'
+kw_int    = _ 'int'    !idchar -> skip
+kw_return = _ 'return' !idchar -> skip
+kw_if     = _ 'if'     !idchar -> skip
+kw_else   = _ 'else'   !idchar -> skip
+kw_while  = _ 'while'  !idchar -> skip

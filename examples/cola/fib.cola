@@ -1,0 +1,8 @@
+(def fib (fn (n)
+  (if (<= n 1) n
+    (+ (call fib (- n 1))
+       (call fib (- n 2))))))
+(def i 0)
+(while (<= i 10) (do
+  (print (call fib i))
+  (set i (+ i 1))))

@@ -1,0 +1,4 @@
+(def fact (fn (n)
+  (if (<= n 1) 1
+    (* n (call fact (- n 1))))))
+(print (call fact 10))

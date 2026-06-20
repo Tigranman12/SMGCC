@@ -1,0 +1,4 @@
+(def count 0)
+(def inc (fn () (do (set count (+ count 1)) count)))
+(def dec (fn () (do (set count (- count 1)) count)))
+(def show (fn () (print count)))

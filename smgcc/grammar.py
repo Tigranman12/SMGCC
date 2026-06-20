@@ -20,7 +20,7 @@ instead of code. Supported DSL (one rule per line):
 Comments start with '#'. Blank lines are ignored.
 """
 from .peg import (Lit, Range, Seq, Choice, Star, Plus, Opt, And, Not, Ref, Act,
-                  WS, Grammar)
+                  WS, ANY, Grammar)
 
 _IDENT_START = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
 _IDENT_CHARS = _IDENT_START + "0123456789"
@@ -144,6 +144,9 @@ class _Reader:
             return self._literal()
         if c == "[":
             return self._range()
+        if c == ".":
+            self.i += 1
+            return ANY
         if c in _IDENT_START:
             name = self.ident()
             return WS if name == "_" else Ref(name)

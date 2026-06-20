@@ -88,6 +88,10 @@ class Ws:
     """Skip whitespace, always succeeds, produces nothing."""
 WS = Ws()
 
+class Any:
+    """Match any single character (like PEG's '.'). Fails only at end of input."""
+ANY = Any()
+
 
 _WHITESPACE = " \t\r\n"
 
@@ -128,6 +132,14 @@ def match(node, st: ParseState, g) -> Any:
     if t is Ws:
         _skip_ws(st)
         return SKIP
+
+    if t is Any:
+        if st.cursor < len(st.text):
+            ch = st.text[st.cursor]
+            st.cursor += 1
+            _track(st)
+            return ch
+        return FAIL
 
     if t is Seq:
         save = st.cursor

@@ -1,0 +1,14 @@
+# cola.peg — COLA surface syntax (S-expressions), as data.
+# Parsed by the SMGCC PEG engine into a nested s-expression AST, which the
+# COLA compiler lowers to LW_OS COLA-VM bytecode.
+
+program = sexpr+ -> program
+sexpr   = list / atom
+list    = '(' sexpr* ')' -> list
+atom    = number / string / symbol
+number  = _ digit+ -> num
+string  = _ '"' strchar* '"' -> str
+strchar = !'"' . -> char
+symbol  = _ symchar+ -> sym
+symchar = [a-z] / [A-Z] / [0-9] / '+' / '-' / '*' / '/' / '%' / '=' / '<' / '>' / '_' / '!' / '?'
+digit   = [0-9]
