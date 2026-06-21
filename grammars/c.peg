@@ -2,32 +2,62 @@
 # the META II/PEG engine parses C source into an AST. Edit the language here.
 #
 # Supported: int functions (params + recursion), local int vars, + - * / %,
-# comparisons (== != < > <= >=), unary - and !, if/else, while, return, calls.
+# comparisons (== != < > <= >=), unary - and !, if/else, while, do-while,
+# for, switch/case/default, enums, structs, return, break, continue, calls,
+# int pointers (& address-of, * dereference, * in declarations and params).
 
-program  = function+ -> program
+program  = top_level+ -> program
+top_level = function / enum_decl / struct_decl
 function = kw_int ident '(' params ')' block -> func
+enum_decl = kw_enum (ident?) '{' enum_vals '}' ';' -> enumdecl
+enum_vals = enum_val (',' enum_val)* ','? -> enumvals
+enum_val  = ident ('=' expr)? -> enumval
+struct_decl = kw_struct ident '{' struct_members '}' ';' -> structdecl
+struct_members = struct_member+
+struct_member = kw_int ident ';' -> structmember
 params   = (param (',' param)*)? -> params
-param    = kw_int ident -> param
+param    = ptrparam / kw_int ident -> param
+ptrparam = kw_int '*' ident -> ptrparam
 block    = '{' statement* '}' -> block
-statement = block / return_s / if_s / while_s / decl_s / expr_s
+statement = block / return_s / if_s / switch_s / do_while_s / while_s / for_s / break_s / continue_s / struct_decl_s / decl_s / expr_s
 return_s = kw_return expr ';' -> ret
 if_s     = kw_if '(' expr ')' statement else_s? -> ifs
 else_s   = kw_else statement -> elses
+switch_s = kw_switch '(' expr ')' '{' case* default? '}' -> switchs
+case     = kw_case expr ':' statement* -> case
+default  = kw_default ':' statement* -> default
+do_while_s = kw_do statement kw_while '(' expr ')' ';' -> dowhiles
 while_s  = kw_while '(' expr ')' statement -> whiles
-decl_s   = kw_int ident ('=' expr)? ';' -> decl
+for_s    = kw_for '(' for_init ';' for_opt ';' for_opt ')' statement -> fors
+for_init = for_decl / for_opt
+for_decl = kw_int ident '=' expr -> fordecl
+for_opt  = expr? -> opt
+break_s    = kw_break ';' -> breaks
+continue_s = kw_continue ';' -> continues
+struct_decl_s = struct_kw ident ident ';' -> structdecl_s
+struct_kw  = kw_struct
+ptr_decl  = kw_int '*' ident ('=' expr)? ';' -> ptrdecl
+array_decl = kw_int ident '[' expr ']' ';' -> arraydecl
+decl_s   = ptr_decl / array_decl / kw_int ident ('=' expr)? ';' -> decl
 expr_s   = expr ';' -> exprstmt
 expr     = assign
-assign   = ident '=' !'=' assign -> assign / equality
+assign   = lvalue '=' !'=' assign -> assign / logic_or
+lvalue   = '*' unary -> dereflvalue / subscriptlvalue / dotassign
+subscriptlvalue = dotvar '[' expr ']' -> subscript
+dotassign = ident ('.' ident)* -> dotvar
+logic_or  = logic_and ('||' logic_and)* -> logor
+logic_and = equality ('&&' equality)* -> logand
 equality = relational (('==' / '!=') relational)* -> chain
 relational = additive (('<=' / '>=' / '<' / '>') additive)* -> chain
 additive = multiplicative (('+' / '-') multiplicative)* -> chain
 multiplicative = unary (('*' / '/' / '%') unary)* -> chain
-unary    = ('-' / '!') unary -> unary / call_or_primary
-call_or_primary = call / primary
+unary    = ('-' / '!' / '*' / '&') unary -> unary / call_or_primary
+call_or_primary = call / subscript / primary
 call     = ident '(' args ')' -> call
 args     = (expr (',' expr)*)? -> args
-primary  = number / var / '(' expr ')' -> paren
-var      = ident -> var
+subscript = dotvar '[' expr ']' -> subscript
+primary  = number / dotvar / '(' expr ')'
+dotvar   = ident ('.' ident)* -> dotvar
 number   = _ [0-9]+ -> num
 ident    = _ idstart idchar* -> ident
 idstart  = [a-z] / [A-Z] / '_'
@@ -37,3 +67,12 @@ kw_return = _ 'return' !idchar -> skip
 kw_if     = _ 'if'     !idchar -> skip
 kw_else   = _ 'else'   !idchar -> skip
 kw_while  = _ 'while'  !idchar -> skip
+kw_do     = _ 'do'     !idchar -> skip
+kw_for      = _ 'for'      !idchar -> skip
+kw_switch   = _ 'switch'   !idchar -> skip
+kw_case     = _ 'case'     !idchar -> skip
+kw_default  = _ 'default'  !idchar -> skip
+kw_break    = _ 'break'    !idchar -> skip
+kw_continue = _ 'continue' !idchar -> skip
+kw_enum     = _ 'enum'     !idchar -> skip
+kw_struct   = _ 'struct'   !idchar -> skip
