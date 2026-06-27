@@ -1,0 +1,11 @@
+/home/tiko/workspace/gemini_staff/SGCC/.github/workflows/ci.yml
+/home/tiko/workspace/gemini_staff/SGCC/BUGS.md
+/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md
+/home/tiko/workspace/gemini_staff/SGCC/PLAN.md
+/home/tiko/workspace/gemini_staff/SGCC/README.md
+/home/tiko/workspace/gemini_staff/SGCC/RULES.md
+/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md
+/home/tiko/workspace/gemini_staff/SGCC/TASK.md
+/home/tiko/workspace/gemini_staff/SGCC/cola/README.md
+/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md
+/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md

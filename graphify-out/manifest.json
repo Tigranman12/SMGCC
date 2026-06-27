@@ -1,0 +1,237 @@
+{
+  "/home/tiko/workspace/gemini_staff/SGCC/cc.py": {
+    "mtime": 1781899563.9358141,
+    "ast_hash": "a457bc6e4f765aa84624e22568ada665",
+    "semantic_hash": "a457bc6e4f765aa84624e22568ada665"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/__init__.py": {
+    "mtime": 1781900656.1150699,
+    "ast_hash": "7ba0eab685c9195cb6f956db22451373",
+    "semantic_hash": "7ba0eab685c9195cb6f956db22451373"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/cobj.py": {
+    "mtime": 1781900740.127208,
+    "ast_hash": "32642c8291861aed46e88614a88d10b3",
+    "semantic_hash": "32642c8291861aed46e88614a88d10b3"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/cobj_load.c": {
+    "mtime": 1781903080.701546,
+    "ast_hash": "76de058488ac0aaa0d119a19f7c00de8",
+    "semantic_hash": "76de058488ac0aaa0d119a19f7c00de8"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/compiler.py": {
+    "mtime": 1781900697.5456362,
+    "ast_hash": "b7574834e87dd479c5f5a6f60e7ed2b6",
+    "semantic_hash": "b7574834e87dd479c5f5a6f60e7ed2b6"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/driver.py": {
+    "mtime": 1781900750.1671093,
+    "ast_hash": "aededa1e88f2d5649122ec8ee863de5c",
+    "semantic_hash": "aededa1e88f2d5649122ec8ee863de5c"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/opcodes.py": {
+    "mtime": 1781900671.4889069,
+    "ast_hash": "afa820eeae22fd7daf4055ee82e17b8f",
+    "semantic_hash": "afa820eeae22fd7daf4055ee82e17b8f"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/reader.py": {
+    "mtime": 1781900661.556012,
+    "ast_hash": "eba21cfb32d1fc04e55ef6bf9af70162",
+    "semantic_hash": "eba21cfb32d1fc04e55ef6bf9af70162"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/vm.py": {
+    "mtime": 1781900727.508333,
+    "ast_hash": "c5650130e46f9f3582241d5dcbf59286",
+    "semantic_hash": "c5650130e46f9f3582241d5dcbf59286"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/colac.py": {
+    "mtime": 1781900751.839093,
+    "ast_hash": "e55494b0e3bf1d5632b1e481cdcdefdf",
+    "semantic_hash": "e55494b0e3bf1d5632b1e481cdcdefdf"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/examples/factorial.c": {
+    "mtime": 1781899640.4565413,
+    "ast_hash": "46cdba628d533b3112a624b1770cb5a5",
+    "semantic_hash": "46cdba628d533b3112a624b1770cb5a5"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/examples/test_programs/test_all.c": {
+    "mtime": 1781958652.1601145,
+    "ast_hash": "27e39b1d9b2880c5a86a811dd9ff787f",
+    "semantic_hash": "27e39b1d9b2880c5a86a811dd9ff787f"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/examples/test_programs/test_while.c": {
+    "mtime": 1781958716.1566484,
+    "ast_hash": "f16ddfc3747e54c4fdcab7d3aa1e2d51",
+    "semantic_hash": "f16ddfc3747e54c4fdcab7d3aa1e2d51"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/pyproject.toml": {
+    "mtime": 1781950201.849458,
+    "ast_hash": "85a76cbbd7b6e7f660b7201ca87fcf90",
+    "semantic_hash": "85a76cbbd7b6e7f660b7201ca87fcf90"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/run.py": {
+    "mtime": 1781898770.0076706,
+    "ast_hash": "b023196bec924a4f3ec33a8520395463",
+    "semantic_hash": "b023196bec924a4f3ec33a8520395463"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/scripts/codellama.py": {
+    "mtime": 1781976340.030305,
+    "ast_hash": "cc91f9bb0ad3c432ebfc8960b9d3a114",
+    "semantic_hash": "cc91f9bb0ad3c432ebfc8960b9d3a114"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/scripts/vault-bridge.sh": {
+    "mtime": 1781897572.382435,
+    "ast_hash": "c6cf6e440019da5f1a377632d42b60c8",
+    "semantic_hash": "c6cf6e440019da5f1a377632d42b60c8"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/__init__.py": {
+    "mtime": 1781898769.1706765,
+    "ast_hash": "6a3d06e4427156d935174b3c9c577996",
+    "semantic_hash": "6a3d06e4427156d935174b3c9c577996"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/analyze.py": {
+    "mtime": 1782230292.5203938,
+    "ast_hash": "40505691c47db5b5ed01aec713d6283b",
+    "semantic_hash": "40505691c47db5b5ed01aec713d6283b"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/calc.py": {
+    "mtime": 1781898753.620785,
+    "ast_hash": "9499c29485e696f8dc3309aa307d81aa",
+    "semantic_hash": "9499c29485e696f8dc3309aa307d81aa"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/cgen.py": {
+    "mtime": 1782230315.7582555,
+    "ast_hash": "526808fc01ed3a98aca60971d5fe8f30",
+    "semantic_hash": "526808fc01ed3a98aca60971d5fe8f30"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/cgrammar.py": {
+    "mtime": 1782230084.8036976,
+    "ast_hash": "3ed5c1ffd15b0f9f888a1502b6b09c85",
+    "semantic_hash": "3ed5c1ffd15b0f9f888a1502b6b09c85"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/driver.py": {
+    "mtime": 1782014330.400859,
+    "ast_hash": "9bf37443c4e7f6c2c7199c272ed97b26",
+    "semantic_hash": "9bf37443c4e7f6c2c7199c272ed97b26"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/grammar.py": {
+    "mtime": 1782230151.3172657,
+    "ast_hash": "3cc82d3c6d5fe81a3cacf0a277284d4a",
+    "semantic_hash": "3cc82d3c6d5fe81a3cacf0a277284d4a"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/ir.py": {
+    "mtime": 1782023054.8990343,
+    "ast_hash": "75a2120cd0c12870dd0caa5a784cd821",
+    "semantic_hash": "75a2120cd0c12870dd0caa5a784cd821"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/peg.py": {
+    "mtime": 1781900638.2382624,
+    "ast_hash": "a100f832c7e40483229d62793fcca45f",
+    "semantic_hash": "a100f832c7e40483229d62793fcca45f"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/repl.py": {
+    "mtime": 1781898767.9736848,
+    "ast_hash": "b940bbedb2331376481d40d699ff73bf",
+    "semantic_hash": "b940bbedb2331376481d40d699ff73bf"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc_c/peg.c": {
+    "mtime": 1782229709.7815058,
+    "ast_hash": "c8ab7843e19c721f262c1d50085994d8",
+    "semantic_hash": "c8ab7843e19c721f262c1d50085994d8"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc_c/peg.h": {
+    "mtime": 1782229677.0177922,
+    "ast_hash": "e9b4c2f581d16dfabaa623a226fa559e",
+    "semantic_hash": "e9b4c2f581d16dfabaa623a226fa559e"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc_c/test_peg.c": {
+    "mtime": 1782229809.420683,
+    "ast_hash": "7f3eba326e4093a4282d35dd7c5a296c",
+    "semantic_hash": "7f3eba326e4093a4282d35dd7c5a296c"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_analyze.py": {
+    "mtime": 1782021290.6929803,
+    "ast_hash": "bbb5b33f1bef9faf44b6f7baa5e060f0",
+    "semantic_hash": "bbb5b33f1bef9faf44b6f7baa5e060f0"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_cc.py": {
+    "mtime": 1782030135.3633752,
+    "ast_hash": "4dd6c15c062e2b58ef06542090c263a0",
+    "semantic_hash": "4dd6c15c062e2b58ef06542090c263a0"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_cola.py": {
+    "mtime": 1781902972.2610545,
+    "ast_hash": "57c88db74ed0d76bc16bcf866117574b",
+    "semantic_hash": "57c88db74ed0d76bc16bcf866117574b"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_ir.py": {
+    "mtime": 1782021297.7049553,
+    "ast_hash": "6d5392ca4022c75942c0f29de09540a0",
+    "semantic_hash": "6d5392ca4022c75942c0f29de09540a0"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_smgcc.py": {
+    "mtime": 1781950493.022732,
+    "ast_hash": "b9437e8a1a7374ea1a1d805b89835aa5",
+    "semantic_hash": "b9437e8a1a7374ea1a1d805b89835aa5"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/tests/test_stage6.py": {
+    "mtime": 1782230365.8019614,
+    "ast_hash": "d093399d1709bc8a577261efbebf03ef",
+    "semantic_hash": "d093399d1709bc8a577261efbebf03ef"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/.github/workflows/ci.yml": {
+    "mtime": 1781950206.8234556,
+    "ast_hash": "940f7b316040821a192f627c9feffa36",
+    "semantic_hash": "940f7b316040821a192f627c9feffa36"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/BUGS.md": {
+    "mtime": 1781950232.4334354,
+    "ast_hash": "c0b365523e5358b2c7547c6ec525e0ce",
+    "semantic_hash": "c0b365523e5358b2c7547c6ec525e0ce"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md": {
+    "mtime": 1781896473.6822762,
+    "ast_hash": "dbddaa3e55d71902cd6d9b4555a1a9db",
+    "semantic_hash": "dbddaa3e55d71902cd6d9b4555a1a9db"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md": {
+    "mtime": 1782230471.1813588,
+    "ast_hash": "fc43c8bfbc37b5a59b7e4b21625fd678",
+    "semantic_hash": "fc43c8bfbc37b5a59b7e4b21625fd678"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/README.md": {
+    "mtime": 1781957797.5156653,
+    "ast_hash": "7856e441ec3d45574e7a2c0fcad7c815",
+    "semantic_hash": "7856e441ec3d45574e7a2c0fcad7c815"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/RULES.md": {
+    "mtime": 1781896473.6682765,
+    "ast_hash": "cc821a8a6b9cedd8c8da20c72abc0008",
+    "semantic_hash": "cc821a8a6b9cedd8c8da20c72abc0008"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md": {
+    "mtime": 1781896473.6712766,
+    "ast_hash": "14c4d843dc5e947b839488d23a18e131",
+    "semantic_hash": "14c4d843dc5e947b839488d23a18e131"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/TASK.md": {
+    "mtime": 1782230452.0454667,
+    "ast_hash": "61f50f184dc3327714c485e14eb3c767",
+    "semantic_hash": "61f50f184dc3327714c485e14eb3c767"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md": {
+    "mtime": 1781903057.2086568,
+    "ast_hash": "b26d71e0cd4eea7ad6ffe49ccf9fe362",
+    "semantic_hash": "b26d71e0cd4eea7ad6ffe49ccf9fe362"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md": {
+    "mtime": 1781898862.2090666,
+    "ast_hash": "2acc39e8363430d2925d2c238b3971b1",
+    "semantic_hash": "2acc39e8363430d2925d2c238b3971b1"
+  },
+  "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md": {
+    "mtime": 1781898797.8734813,
+    "ast_hash": "3cbd19bace02fd10d4a66e2567fda778",
+    "semantic_hash": "3cbd19bace02fd10d4a66e2567fda778"
+  }
+}

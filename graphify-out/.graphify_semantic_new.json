@@ -1,0 +1,1314 @@
+{
+  "nodes": [
+    {
+      "id": "plan",
+      "label": "Project Plan",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme",
+      "label": "Project README",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "rules",
+      "label": "Project Rules",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "task",
+      "label": "Current Task",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/TASK.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "expl_stage",
+      "label": "Stage 1 Explanation",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "smgcc_doc",
+      "label": "SMGCC Project Summary",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bugs",
+      "label": "Bug Log",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/BUGS.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "workflows_ci",
+      "label": "CI Workflow",
+      "file_type": "code",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/.github/workflows/ci.yml",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "cola_readme",
+      "label": "COLA Compiler README",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "smgcc_readme",
+      "label": "Stage 1 Engine README",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_function_spec",
+      "label": "Function Specification",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "meta_ii",
+      "label": "META II Metacompiler",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Val Schorre",
+      "contributor": null
+    },
+    {
+      "id": "peg_grammar",
+      "label": "Parsing Expression Grammars",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "vpri_steps",
+      "label": "VPRI STEPS",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Alan Kay",
+      "contributor": null
+    },
+    {
+      "id": "tinycc",
+      "label": "TinyCC",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": "Fabrice Bellard",
+      "contributor": null
+    },
+    {
+      "id": "self_hosting",
+      "label": "Self-Hosting Compiler",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ast_representation",
+      "label": "Abstract Syntax Tree",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "three_address_code",
+      "label": "Three-Address Code",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "cola_language",
+      "label": "COLA Language",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "lw_os_project",
+      "label": "LW_OS Operating System",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "tdd_methodology",
+      "label": "Test-Driven Development",
+      "file_type": "rationale",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "markdown_workflow",
+      "label": "Markdown-Driven Workflow",
+      "file_type": "rationale",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "peg_engine",
+      "label": "PEG Pattern Matching Engine",
+      "file_type": "code",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "grammar_loader",
+      "label": "Seed Grammar Loader",
+      "file_type": "code",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "meta_node_types",
+      "label": "MetaNode Grammar Types",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "parse_state",
+      "label": "ParseState",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "ordered_choice",
+      "label": "Ordered Choice Operator",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "lookahead",
+      "label": "Lookahead Operators",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "repetition",
+      "label": "Repetition Operators",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "output_actions",
+      "label": "Output Actions",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "backtracking",
+      "label": "Backtracking Mechanism",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "left_recursion",
+      "label": "Left Recursion Problem",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "bug_loop",
+      "label": "Bug Loop Process",
+      "file_type": "rationale",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "cola_vm",
+      "label": "COLA Virtual Machine",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "cobj_format",
+      "label": "COLA Bytecode Format",
+      "file_type": "concept",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_0",
+      "label": "Stage 0: Scaffolding",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_1",
+      "label": "Stage 1: META II Metacompiler",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_2",
+      "label": "Stage 2: Lexing & Parsing",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_3",
+      "label": "Stage 3: Semantic Analysis",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_4",
+      "label": "Stage 4: Intermediate Rep",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_5",
+      "label": "Stage 5: Code Generation",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "stage_6",
+      "label": "Stage 6: Self-Hosting",
+      "file_type": "document",
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "plan",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "peg_grammar",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "vpri_steps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_2",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_3",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_4",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_5",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "stage_6",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "plan",
+      "target": "three_address_code",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "peg_grammar",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "vpri_steps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "tinycc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "self_hosting",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "ast_representation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "tdd_methodology",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "markdown_workflow",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_2",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_3",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_4",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_5",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "readme",
+      "target": "stage_6",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "rules",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "rules",
+      "target": "tdd_methodology",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "rules",
+      "target": "bug_loop",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/RULES.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "task",
+      "target": "stage_6",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/TASK.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "task",
+      "target": "self_hosting",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/TASK.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "peg_grammar",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "vpri_steps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "ordered_choice",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "lookahead",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "repetition",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "output_actions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "backtracking",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "left_recursion",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "meta_node_types",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "expl_stage",
+      "target": "parse_state",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "vpri_steps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "tinycc",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "tdd_methodology",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "markdown_workflow",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "bug_loop",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_0",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_1",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_2",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_3",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_4",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_5",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_doc",
+      "target": "stage_6",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/SMGCC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "bugs",
+      "target": "bug_loop",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/BUGS.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "workflows_ci",
+      "target": "rules",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/.github/workflows/ci.yml",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_readme",
+      "target": "cola_language",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_readme",
+      "target": "cola_vm",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_readme",
+      "target": "cobj_format",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_readme",
+      "target": "lw_os_project",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_readme",
+      "target": "peg_engine",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_readme",
+      "target": "peg_engine",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_readme",
+      "target": "grammar_loader",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "smgcc_readme",
+      "target": "meta_ii",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_function_spec",
+      "target": "peg_engine",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_function_spec",
+      "target": "grammar_loader",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_function_spec",
+      "target": "meta_node_types",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_function_spec",
+      "target": "parse_state",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_function_spec",
+      "target": "output_actions",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/docs/FUNCTION_SPEC.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ii",
+      "target": "peg_grammar",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "meta_ii",
+      "target": "vpri_steps",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.65,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "peg_engine",
+      "target": "meta_ii",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "peg_engine",
+      "target": "peg_grammar",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "peg_engine",
+      "target": "ordered_choice",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "peg_engine",
+      "target": "backtracking",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/smgcc/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_language",
+      "target": "cola_vm",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_language",
+      "target": "cobj_format",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "cola_language",
+      "target": "lw_os_project",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "self_hosting",
+      "target": "meta_ii",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/README.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "meta_ii_peg_parsing_paradigm",
+      "label": "META II + PEG Parsing Paradigm",
+      "nodes": [
+        "meta_ii",
+        "peg_grammar",
+        "peg_engine"
+      ],
+      "relation": "form",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/EXPL_STAGE.md"
+    },
+    {
+      "id": "cola_compiler_pipeline",
+      "label": "COLA Compiler Pipeline",
+      "nodes": [
+        "cola_language",
+        "cola_vm",
+        "cobj_format",
+        "lw_os_project"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/cola/README.md"
+    },
+    {
+      "id": "compiler_pipeline_stages",
+      "label": "SMGCC Compiler Pipeline Stages",
+      "nodes": [
+        "stage_1",
+        "stage_2",
+        "stage_3",
+        "stage_4",
+        "stage_5"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.95,
+      "source_file": "/home/tiko/workspace/gemini_staff/SGCC/PLAN.md"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}
