@@ -136,7 +136,11 @@ class _Analyzer:
         raise SemanticError("non-constant enum value")
 
     def analyze_func(self, node):
-        _, name, params, body = node
+        if len(node) == 5:
+            _, name, params, body, _ret_struct = node
+        else:
+            _, name, params, body = node
+        # Check for struct return type: ('func', name, params, body, struct_return_type)
         self.current_func = name
         self.symtab.push()
 
@@ -145,6 +149,13 @@ class _Analyzer:
             if isinstance(p, tuple) and p[0] == "*":
                 # pointer parameter: ("*", name)
                 self.symtab.declare(p[1], "int*")
+            elif isinstance(p, tuple) and p[0] == "struct":
+                # struct parameter: ("struct", type_name, name)
+                stype = p[1]
+                pname = p[2]
+                if stype not in self.table["structs"]:
+                    raise SemanticError(f"unknown struct type '{stype}'", stype)
+                self.symtab.declare(pname, f"struct:{stype}")
             else:
                 self.symtab.declare(p, "int")
 
@@ -185,6 +196,25 @@ class _Analyzer:
             if stype not in self.table["structs"]:
                 raise SemanticError(f"unknown struct type '{stype}'", stype)
             self.symtab.declare(name, f"struct:{stype}")
+
+        elif tag == "structptrdecl":
+            # ('structptrdecl', type_name, var_name, init_expr)
+            stype = node[1]
+            name = node[2]
+            if stype not in self.table["structs"]:
+                raise SemanticError(f"unknown struct type '{stype}'", stype)
+            self.symtab.declare(name, f"struct:{stype}*")
+            if node[3] is not None:
+                self.analyze_expr(node[3])
+
+        elif tag == "structarraydecl":
+            # ('structarraydecl', type_name, var_name, size_expr)
+            stype = node[1]
+            name = node[2]
+            if stype not in self.table["structs"]:
+                raise SemanticError(f"unknown struct type '{stype}'", stype)
+            self.symtab.declare(name, f"struct:{stype}[]")
+            self.analyze_expr(node[3])
 
         elif tag == "ret":
             self.analyze_expr(node[1])
@@ -248,6 +278,9 @@ class _Analyzer:
         if tag == "num":
             return "int"
 
+        elif tag == "strlit":
+            return "int*"
+
         elif tag == "var":
             name = node[1]
             # Check if it's an enum constant
@@ -263,21 +296,29 @@ class _Analyzer:
             member_name = node[2]
             if not obj_type.startswith("struct:"):
                 raise SemanticError(f"cannot access member of non-struct type '{obj_type}'")
-            struct_name = obj_type[7:]  # remove "struct:" prefix
+            # Strip pointer/array suffixes for struct lookup
+            base_type = obj_type.split("*")[0].split("[")[0]
+            struct_name = base_type[7:]  # remove "struct:" prefix
             if struct_name not in self.table["structs"]:
                 raise SemanticError(f"unknown struct type '{struct_name}'")
             members = self.table["structs"][struct_name]
-            if member_name not in members:
-                raise SemanticError(f"struct '{struct_name}' has no member '{member_name}'")
-            return "int"
+            # Find member and return its type
+            for m in members:
+                if isinstance(m, tuple) and m[0] == member_name:
+                    return m[1]
+                elif m == member_name:
+                    return "int"
+            raise SemanticError(f"struct '{struct_name}' has no member '{member_name}'")
 
         elif tag == "subscript":
             # ('subscript', array_expr, index_expr)
             arr_type = self.analyze_expr(node[1])
-            if arr_type != "int[]":
+            # Handle struct arrays too
+            base = arr_type.split("[")[0]
+            if not (base == "int" or base.startswith("struct:") or base.endswith("*")):
                 raise SemanticError(f"cannot subscript non-array type '{arr_type}'")
             self.analyze_expr(node[2])  # validate index expression
-            return "int"
+            return base
 
         elif tag == "assign":
             target = node[1]
@@ -314,17 +355,19 @@ class _Analyzer:
             op = node[1]
             inner_type = self.analyze_expr(node[2])
             if op == "*":
-                if inner_type != "int*":
+                # Allow dereferencing both int* and struct:T*
+                if not inner_type.endswith("*"):
                     raise SemanticError(f"cannot dereference non-pointer type '{inner_type}'")
-                return "int"
+                # Return base type without pointer
+                return inner_type[:-1]
             elif op == "&":
-                if inner_type == "int*":
+                if inner_type.endswith("*"):
                     raise SemanticError("cannot take address of pointer")
                 # Check if inner is an enum constant (not an lvalue)
                 inner = node[2]
                 if isinstance(inner, tuple) and inner[0] == "var" and inner[1] in self.table["enum_values"]:
                     raise SemanticError(f"cannot take address of enum constant '{inner[1]}'")
-                return "int*"
+                return f"{inner_type}*"
             return "int"
 
         elif tag == "call":

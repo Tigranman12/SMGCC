@@ -55,6 +55,186 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(st.cursor, 0)
 
 
+class SeqTests(unittest.TestCase):
+    def test_sequence_matches_all(self):
+        node = Seq([Lit("a"), Lit("b"), Lit("c")])
+        r, st = _try(node, "abc")
+        self.assertEqual(r, ["a", "b", "c"])
+        self.assertEqual(st.cursor, 3)
+
+    def test_sequence_backtracks_on_failure(self):
+        node = Seq([Lit("a"), Lit("b")])
+        r, st = _try(node, "ax")
+        self.assertIs(r, FAIL)
+        self.assertEqual(st.cursor, 0)
+
+    def test_sequence_with_whitespace(self):
+        node = Seq([Lit("a"), Lit("b")])
+        r, st = _try(node, "a  b")
+        self.assertEqual(r, ["a", "b"])
+
+
+class StarTests(unittest.TestCase):
+    def test_star_zero_matches(self):
+        node = Star(Lit("a"))
+        r, st = _try(node, "bbb")
+        self.assertEqual(r, [])
+        self.assertEqual(st.cursor, 0)
+
+    def test_star_greedy(self):
+        node = Star(Lit("a"))
+        r, st = _try(node, "aaa")
+        self.assertEqual(r, ["a", "a", "a"])
+        self.assertEqual(st.cursor, 3)
+
+    def test_star_stops_on_mismatch(self):
+        node = Star(Lit("a"))
+        r, st = _try(node, "aab")
+        self.assertEqual(r, ["a", "a"])
+        self.assertEqual(st.cursor, 2)
+
+
+class OptTests(unittest.TestCase):
+    def test_opt_present(self):
+        node = Opt(Lit("x"))
+        r, st = _try(node, "x")
+        self.assertEqual(r, "x")
+        self.assertEqual(st.cursor, 1)
+
+    def test_opt_absent(self):
+        node = Opt(Lit("x"))
+        r, st = _try(node, "y")
+        self.assertIsNot(r, FAIL)
+        self.assertEqual(st.cursor, 0)
+
+
+class AndTests(unittest.TestCase):
+    def test_and_succeeds_without_consuming(self):
+        node = And(Lit("a"))
+        r, st = _try(node, "ab")
+        self.assertIsNot(r, FAIL)
+        self.assertEqual(st.cursor, 0)
+
+    def test_and_fails_if_not_present(self):
+        node = And(Lit("a"))
+        r, _ = _try(node, "b")
+        self.assertIs(r, FAIL)
+
+
+class NotTests(unittest.TestCase):
+    def test_not_succeeds_when_absent(self):
+        node = Not(Lit("a"))
+        r, st = _try(node, "b")
+        self.assertIsNot(r, FAIL)
+        self.assertEqual(st.cursor, 0)
+
+    def test_not_fails_when_present(self):
+        node = Not(Lit("a"))
+        r, _ = _try(node, "ab")
+        self.assertIs(r, FAIL)
+
+
+class WhitespaceTests(unittest.TestCase):
+    def test_ws_skip(self):
+        from smgcc.peg import WS
+        r, st = _try(WS, "   abc")
+        self.assertEqual(st.cursor, 3)
+
+    def test_literal_skips_leading_ws(self):
+        r, st = _try(Lit("x"), "   x")
+        self.assertEqual(r, "x")
+        self.assertEqual(st.cursor, 4)
+
+
+class RangeTests(unittest.TestCase):
+    def test_range_match(self):
+        node = Range("a", "z")
+        r, st = _try(node, "m")
+        self.assertEqual(r, "m")
+        self.assertEqual(st.cursor, 1)
+
+    def test_range_no_match(self):
+        node = Range("a", "z")
+        r, _ = _try(node, "5")
+        self.assertIs(r, FAIL)
+
+    def test_range_digit(self):
+        node = Range("0", "9")
+        r, _ = _try(node, "7")
+        self.assertEqual(r, "7")
+
+
+class AnyTests(unittest.TestCase):
+    def test_any_matches_char(self):
+        from smgcc.peg import ANY
+        r, st = _try(ANY, "x")
+        self.assertEqual(r, "x")
+        self.assertEqual(st.cursor, 1)
+
+    def test_any_fails_at_end(self):
+        from smgcc.peg import ANY
+        r, _ = _try(ANY, "")
+        self.assertIs(r, FAIL)
+
+
+class ParseErrorTests(unittest.TestCase):
+    def test_error_shows_position(self):
+        g = load("num = [0-9]+", {})
+        with self.assertRaises(ParseError) as ctx:
+            g.parse("abc")
+        self.assertIn("column", str(ctx.exception))
+
+    def test_error_at_end_of_input(self):
+        g = load("num = [0-9]+", {})
+        with self.assertRaises(ParseError):
+            g.parse("")
+
+
+class GrammarLoaderEdgeCases(unittest.TestCase):
+    def test_multiple_rules(self):
+        g = load("a = 'x'\nb = 'y'", {})
+        self.assertEqual(g.start, "a")
+        self.assertEqual(g.parse("x"), "x")
+
+    def test_comments_stripped(self):
+        g = load("# comment\na = 'ok' # inline", {})
+        self.assertEqual(g.parse("ok"), "ok")
+
+    def test_blank_lines_ignored(self):
+        g = load("a = 'x'\n\n\nb = 'y'", {})
+        self.assertEqual(g.parse("x"), "x")
+
+    def test_nested_groups(self):
+        g = load("g = ('a' / 'b') ('c' / 'd')", {})
+        r = g.parse("ac")
+        self.assertEqual(r, ["a", "c"])
+
+    def test_repetition_operators(self):
+        g = load("g = [a-z]+", {})
+        self.assertEqual(g.parse("abc"), ["a", "b", "c"])
+
+    def test_lookahead_in_grammar(self):
+        g = load("kw = 'if' !([a-z])", {})
+        self.assertEqual(g.parse("if"), ["if"])
+        with self.assertRaises(ParseError):
+            g.parse("iffy")
+
+    def test_action_with_complex_ast(self):
+        def build_pair(v):
+            return ("pair", v[0], v[1])
+        g = load("g = [a-z] [0-9] -> pair", {"pair": build_pair})
+        self.assertEqual(g.parse("a1"), ("pair", "a", "1"))
+
+    def test_empty_grammar_raises(self):
+        with self.assertRaises(SyntaxError):
+            load("", {})
+
+    def test_unknown_rule_raises(self):
+        g = load("a = b\nb = 'x'", {})
+        with self.assertRaises(ParseError):
+            g.parse("y")
+
+
 class CalcTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -98,16 +278,55 @@ class CalcTests(unittest.TestCase):
             self.g.parse("(1 + 2")
 
 
-class GrammarLoaderTests(unittest.TestCase):
-    def test_loads_rules_and_start(self):
-        g = load("greeting = 'hi' / 'hello'", {})
-        self.assertEqual(g.start, "greeting")
-        self.assertEqual(g.parse("hello"), "hello")
+class BootstrapTests(unittest.TestCase):
+    """Verify the metacompiler bootstrap: the grammar loader can parse
+    grammars that describe the grammar language itself."""
 
-    def test_bootstrap_self_describes_alternatives(self):
-        # a tiny grammar with an action, loaded entirely from text
-        g = load("digit = [0-9] -> id", {"id": lambda v: int(v)})
-        self.assertEqual(g.parse("7"), 7)
+    def test_meta_grammar_exists(self):
+        meta_path = os.path.join(os.path.dirname(__file__), os.pardir,
+                                 "grammars", "meta.peg")
+        self.assertTrue(os.path.exists(meta_path))
+
+    def test_meta_grammar_is_valid_utf8(self):
+        meta_path = os.path.join(os.path.dirname(__file__), os.pardir,
+                                 "grammars", "meta.peg")
+        with open(meta_path, encoding="utf-8") as f:
+            text = f.read()
+        self.assertIn("grammar", text)
+        self.assertIn("rule", text)
+
+    def test_simple_grammar_loads(self):
+        g = load("g = 'hello' / 'world'", {})
+        self.assertEqual(g.start, "g")
+        self.assertEqual(g.parse("hello"), "hello")
+        self.assertEqual(g.parse("world"), "world")
+
+    def test_grammar_with_lookahead(self):
+        g = load("kw = 'if' !([a-z])", {})
+        self.assertEqual(g.parse("if"), ["if"])
+        with self.assertRaises(ParseError):
+            g.parse("iffy")
+
+    def test_grammar_with_repetition(self):
+        g = load("digits = [0-9]+", {})
+        self.assertEqual(g.parse("123"), ["1", "2", "3"])
+
+    def test_grammar_with_action(self):
+        def build_num(v):
+            return int("".join(v))
+        g = load("num = [0-9]+ -> num", {"num": build_num})
+        self.assertEqual(g.parse("42"), 42)
+
+    def test_grammar_with_groups(self):
+        g = load("g = ('a' / 'b') ('c' / 'd')", {})
+        self.assertEqual(g.parse("ac"), ["a", "c"])
+
+    def test_grammar_loader_roundtrip(self):
+        original = "expr = 'a' / 'b'\nother = [0-9]+"
+        g = load(original, {})
+        self.assertEqual(g.start, "expr")
+        self.assertEqual(g.parse("a"), "a")
+        self.assertEqual(g.parse("b"), "b")
 
 
 if __name__ == "__main__":

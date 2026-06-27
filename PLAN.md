@@ -43,13 +43,13 @@ Our journey is structured into 6 sequential stages designed to take us from blan
 
 | Stage | Name | Description | Status |
 |---|---|---|---|
-| **Stage 0** | **Scaffolding** | Setup environment, core testing frameworks, workflow files. | 🟡 In Progress |
-| **Stage 1** | **META II Metacompiler** | Build a tiny META II-style pattern matcher that reads grammar rules and supports output actions. | ⚪ Not Started |
-| **Stage 2** | **Lexing & Parsing** | Use the Stage 1 META II metacompiler to parse a subset of C into an AST. | ⚪ Not Started |
-| **Stage 3** | **Semantic Analysis**| Type-checking, scope validation, and symbol table generation. | ⚪ Not Started |
-| **Stage 4** | **Intermediate Rep** | Flatten AST into stable, linear Three-Address Code (IR). | ⚪ Not Started |
-| **Stage 5** | **Code Generation**  | Translate IR into low-level machine instructions / Assembly. | ⚪ Not Started |
-| **Stage 6** | **Self-Hosting**    | Compile SMGCC using SMGCC to achieve complete independence. | ⚪ Not Started |
+| **Stage 0** | **Scaffolding** | Setup environment, core testing frameworks, workflow files. | ✅ Complete |
+| **Stage 1** | **META II Metacompiler** | Build a tiny META II-style pattern matcher that reads grammar rules and supports output actions. | ✅ Complete |
+| **Stage 2** | **Lexing & Parsing** | Use the Stage 1 META II metacompiler to parse a subset of C into an AST. | ✅ Complete |
+| **Stage 3** | **Semantic Analysis**| Type-checking, scope validation, and symbol table generation. | ✅ Complete |
+| **Stage 4** | **Intermediate Rep** | Flatten AST into stable, linear Three-Address Code (IR). | ✅ Complete |
+| **Stage 5** | **Code Generation**  | Translate IR into low-level machine instructions / Assembly. | ✅ Complete |
+| **Stage 6** | **Self-Hosting**    | Compile SMGCC using SMGCC to achieve complete independence. | 🟡 In Progress (194 tests, string literals, C PEG started) |
 
 ---
 

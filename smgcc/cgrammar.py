@@ -35,6 +35,10 @@ def _func(v):
     # [name, '(', params, ')', block]   (kw_int dropped by -> skip)
     return ("func", v[0], v[2], v[4])
 
+def _funcstruct(v):
+    # [struct_name, name, '(', params, ')', block]  (struct_kw dropped)
+    return ("func", v[1], v[3], v[5], v[0])  # add return struct type
+
 def _params(v):
     if v is SKIP:
         return []
@@ -46,6 +50,10 @@ def _param(v):
 def _ptrparam(v):
     # ['*', name]  (kw_int dropped) — pointer parameter
     return ("*", v[1])
+
+def _structparam(v):
+    # [struct_name, name]  (struct_kw dropped) — struct parameter
+    return ("struct", v[0], v[1])
 
 def _block(v):
     # ['{', [stmts], '}']
@@ -95,6 +103,15 @@ def _ptrdecl(v):
 def _arraydecl(v):
     # [name, '[', expr, ']', ';']  (kw_int dropped)
     return ("arraydecl", v[0], v[2])
+
+def _structptrdecl(v):
+    # [struct_name, '*', name, ('=' expr)?, ';']  (struct_kw dropped)
+    init = v[3][1] if len(v) == 5 else None
+    return ("structptrdecl", v[0], v[2], init)
+
+def _structarraydecl(v):
+    # [struct_name, name, '[', expr, ']', ';']  (struct_kw dropped)
+    return ("structarraydecl", v[0], v[1], v[3])
 
 def _exprstmt(v):
     return ("exprstmt", v[0])
@@ -162,20 +179,35 @@ def _structdecl(v):
     return ("structdecl", v[0], v[2])
 
 def _structmember(v):
-    # [name]  (kw_int dropped)
-    return v[0]
+    # For int members: ['x', ';'] — name and semicolon literal
+    # For struct members: ['Inner', 'i', ';'] — struct_name, var_name, semicolon
+    if len(v) == 2:
+        # int member: name, ';'
+        return (v[0], "int")
+    # struct member: struct_name, var_name, ';'
+    return (v[1], f"struct:{v[0]}")
 
 def _structdecl_s(v):
-    # [struct_kw, type_name, var_name]  -> ('struct_var', type_name, var_name)
-    return ("struct_var", v[0], v[1])
+    # [struct_kw dropped] [type_name, var_name, ('=' expr)?, ';']
+    # With init: v = [type_name, var_name, ['=', expr], ';']  (len=4)
+    # Without:   v = [type_name, var_name, ';']                (len=3)
+    if len(v) == 4:
+        init = v[2][1]  # extract expr from ['=', expr]
+    else:
+        init = None
+    return ("struct_var", v[0], v[1], init)
 
 def _dotvar(v):
-    # [name, [['.', member], ...]]
+    # [name, [['.', member] or ['->', member], ...]]
     if len(v) == 1:
         return ("var", v[0])
     obj = v[0]
     for pair in v[1]:
-        obj = ("member", obj, pair[1])
+        if pair[0] == "->":
+            inner = ("var", obj) if isinstance(obj, str) else obj
+            obj = ("member", ("un", "*", inner), pair[1])
+        else:
+            obj = ("member", obj, pair[1])
     if isinstance(obj, str):
         return ("var", obj)
     return obj
@@ -185,8 +217,12 @@ def _dereflvalue(v):
     return ("un", "*", v[1])
 
 def _subscript(v):
-    # [array, '[', index, ']'] — array subscript access
-    return ("subscript", v[0], v[2])
+    # [array, '[', index, ']'] or [array, '[', index, ']', [['.', member], ...] or []]
+    node = ("subscript", v[0], v[2])
+    if len(v) > 4 and v[4]:
+        for pair in v[4]:
+            node = ("member", node, pair[1])
+    return node
 
 def _foropt(v):
     # expr? : present -> the expr; absent -> SKIP -> None
@@ -234,6 +270,27 @@ def _paren(v):
 def _num(v):
     return ("num", int("".join(v[0])))
 
+def _strlit(v):
+    # v is ['"', [strchar_results], '"']
+    # Extract the strchar results (index 1)
+    chars = v[1] if len(v) > 1 else []
+    out = []
+    for item in chars:
+        # Flatten single-element lists: ['h'] -> 'h'
+        while isinstance(item, list) and len(item) == 1:
+            item = item[0]
+        if isinstance(item, list) and len(item) == 2 and item[0] == "\\":
+            esc = item[1]
+            if esc == "n": out.append("\n")
+            elif esc == "t": out.append("\t")
+            elif esc == "r": out.append("\r")
+            elif esc == '"': out.append('"')
+            elif esc == "\\": out.append("\\")
+            else: out.append(esc)
+        elif isinstance(item, str):
+            out.append(item)
+    return ("strlit", "".join(out))
+
 def _ident(v):
     # [first_char, [rest_chars]]
     return v[0] + "".join(v[1])
@@ -243,7 +300,8 @@ def _skip(v):
 
 
 ACTIONS = {
-    "program": _program, "func": _func, "params": _params, "param": _param,
+    "program": _program, "func": _func, "funcstruct": _funcstruct,
+    "params": _params, "param": _param,
     "block": _block, "ret": _ret, "ifs": _ifs, "elses": _elses,
     "whiles": _whiles, "dowhiles": _dowhiles, "switchs": _switchs,
     "case": _case, "default": _default, "decl": _decl, "exprstmt": _exprstmt,
@@ -256,7 +314,9 @@ ACTIONS = {
     "structdecl_s": _structdecl_s, "dotvar": _dotvar,
     "ptrdecl": _ptrdecl, "dereflvalue": _dereflvalue,
     "ptrparam": _ptrparam, "arraydecl": _arraydecl,
-    "subscript": _subscript,
+    "subscript": _subscript, "strlit": _strlit,
+    "structparam": _structparam,
+    "structptrdecl": _structptrdecl, "structarraydecl": _structarraydecl,
 }
 
 

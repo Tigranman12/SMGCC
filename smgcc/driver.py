@@ -1,6 +1,6 @@
 """Compiler driver — source text to a native executable.
 
-Pipeline:  C source -> [cgrammar] AST -> [cgen] x86-64 asm -> as -> ld -> ELF.
+Pipeline:  C source -> [cgrammar] AST -> [analyze] check -> [cgen] x86-64 asm -> as -> ld -> ELF.
 
 Usage (via ../cc.py):
     python3 cc.py program.c                 # -> a.out
@@ -16,12 +16,33 @@ import tempfile
 from .cgrammar import load_c
 from .cgen import generate, CompileError
 from .peg import ParseError
+from .analyze import analyze, SemanticError
+
+
+def _strip_comments(src: str) -> str:
+    """Remove // and /* */ comments. Safe: the C subset has no string/char literals."""
+    out = []
+    i, n = 0, len(src)
+    while i < n:
+        if src[i] == "/" and i + 1 < n and src[i + 1] == "/":
+            while i < n and src[i] != "\n":
+                i += 1
+        elif src[i] == "/" and i + 1 < n and src[i + 1] == "*":
+            i += 2
+            while i + 1 < n and not (src[i] == "*" and src[i + 1] == "/"):
+                i += 1
+            i += 2
+        else:
+            out.append(src[i])
+            i += 1
+    return "".join(out)
 
 
 def compile_to_asm(src: str) -> str:
-    """C source -> assembly text. Raises ParseError or CompileError."""
-    ast = load_c().parse(src)
-    return generate(ast)
+    """C source -> assembly text. Raises ParseError, SemanticError, or CompileError."""
+    ast = load_c().parse(_strip_comments(src))
+    table = analyze(ast)
+    return generate(ast, table.get("enum_values", {}), table.get("structs", {}))
 
 
 def compile_to_exe(src: str, out_path: str, keep_asm: str = None) -> str:
@@ -83,6 +104,9 @@ def main(argv) -> int:
         return 0
     except ParseError as e:
         print(f"{src_file}: syntax error\n{e}", file=sys.stderr)
+        return 1
+    except SemanticError as e:
+        print(f"{src_file}: semantic error: {e}", file=sys.stderr)
         return 1
     except CompileError as e:
         print(f"{src_file}: compile error: {e}", file=sys.stderr)

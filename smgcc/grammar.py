@@ -154,12 +154,23 @@ class _Reader:
 
     def _literal(self):
         self.i += 1  # opening quote
-        start = self.i
+        chars = []
         while self.i < self.n and self.s[self.i] != "'":
-            self.i += 1
+            if self.s[self.i] == "\\" and self.i + 1 < self.n:
+                esc = self.s[self.i + 1]
+                if esc == "n": chars.append("\n")
+                elif esc == "t": chars.append("\t")
+                elif esc == "r": chars.append("\r")
+                elif esc == "\\": chars.append("\\")
+                elif esc == "'": chars.append("'")
+                else: chars.append(esc)
+                self.i += 2
+            else:
+                chars.append(self.s[self.i])
+                self.i += 1
         if self.peek() != "'":
             self.error("unterminated literal")
-        text = self.s[start:self.i]
+        text = "".join(chars)
         self.i += 1  # closing quote
         if not text:
             self.error("empty literal")

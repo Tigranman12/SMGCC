@@ -8,15 +8,19 @@
 
 program  = top_level+ -> program
 top_level = function / enum_decl / struct_decl
-function = kw_int ident '(' params ')' block -> func
+function = func_int / func_struct
+func_int = kw_int ident '(' params ')' block -> func
+func_struct = struct_kw ident ident '(' params ')' block -> funcstruct
 enum_decl = kw_enum (ident?) '{' enum_vals '}' ';' -> enumdecl
 enum_vals = enum_val (',' enum_val)* ','? -> enumvals
 enum_val  = ident ('=' expr)? -> enumval
 struct_decl = kw_struct ident '{' struct_members '}' ';' -> structdecl
 struct_members = struct_member+
-struct_member = kw_int ident ';' -> structmember
+struct_member = struct_struct_member / struct_int_member
+struct_int_member = kw_int ident ';' -> structmember
+struct_struct_member = struct_kw ident ident ';' -> structmember
 params   = (param (',' param)*)? -> params
-param    = ptrparam / kw_int ident -> param
+param    = struct_kw ident ident -> structparam / ptrparam / kw_int ident -> param
 ptrparam = kw_int '*' ident -> ptrparam
 block    = '{' statement* '}' -> block
 statement = block / return_s / if_s / switch_s / do_while_s / while_s / for_s / break_s / continue_s / struct_decl_s / decl_s / expr_s
@@ -34,17 +38,19 @@ for_decl = kw_int ident '=' expr -> fordecl
 for_opt  = expr? -> opt
 break_s    = kw_break ';' -> breaks
 continue_s = kw_continue ';' -> continues
-struct_decl_s = struct_kw ident ident ';' -> structdecl_s
+struct_decl_s = struct_kw ident ident ('=' expr)? ';' -> structdecl_s
 struct_kw  = kw_struct
 ptr_decl  = kw_int '*' ident ('=' expr)? ';' -> ptrdecl
+struct_ptr_decl = struct_kw ident '*' ident ('=' expr)? ';' -> structptrdecl
+struct_array_decl = struct_kw ident ident '[' expr ']' ';' -> structarraydecl
 array_decl = kw_int ident '[' expr ']' ';' -> arraydecl
-decl_s   = ptr_decl / array_decl / kw_int ident ('=' expr)? ';' -> decl
+decl_s   = struct_ptr_decl / struct_array_decl / ptr_decl / array_decl / struct_decl_s / kw_int ident ('=' expr)? ';' -> decl
 expr_s   = expr ';' -> exprstmt
 expr     = assign
 assign   = lvalue '=' !'=' assign -> assign / logic_or
 lvalue   = '*' unary -> dereflvalue / subscriptlvalue / dotassign
-subscriptlvalue = dotvar '[' expr ']' -> subscript
-dotassign = ident ('.' ident)* -> dotvar
+subscriptlvalue = dotvar '[' expr ']' ('.' ident)* -> subscript
+dotassign = ident ('.' ident / '->' ident)* -> dotvar
 logic_or  = logic_and ('||' logic_and)* -> logor
 logic_and = equality ('&&' equality)* -> logand
 equality = relational (('==' / '!=') relational)* -> chain
@@ -55,9 +61,12 @@ unary    = ('-' / '!' / '*' / '&') unary -> unary / call_or_primary
 call_or_primary = call / subscript / primary
 call     = ident '(' args ')' -> call
 args     = (expr (',' expr)*)? -> args
-subscript = dotvar '[' expr ']' -> subscript
-primary  = number / dotvar / '(' expr ')'
-dotvar   = ident ('.' ident)* -> dotvar
+subscript = (dotvar / string) '[' expr ']' ('.' ident)* -> subscript
+primary  = number / string / dotvar / '(' expr ')'
+string   = _ '"' strchar* '"' -> strlit
+strchar  = ('\\' escchar) / (!'"' .)
+escchar  = 'n' / 't' / 'r' / '"' / '\\'
+dotvar   = ident ('.' ident / '->' ident)* -> dotvar
 number   = _ [0-9]+ -> num
 ident    = _ idstart idchar* -> ident
 idstart  = [a-z] / [A-Z] / '_'

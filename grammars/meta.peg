@@ -1,0 +1,37 @@
+# meta.peg — The META II grammar language, described in itself.
+#
+# This is the bootstrap: the grammar that describes our own .peg syntax.
+# The seed loader (grammar.py) reads this file, and the resulting Grammar
+# can parse any .peg file — including this one.
+#
+# Supported features in the seed loader:
+#   name = alternation
+#   alternation : seq ('/' seq)*
+#   seq         : prefixed+
+#   prefixed    : ('!' | '&')? postfix
+#   postfix     : primary ('*'|'+'|'?')?
+#   primary     : '(' alternation ')'
+#               | "'" literal "'"
+#               | '[' a '-' b ']'   (single char range)
+#               | name
+#               | '_'               (whitespace skip)
+
+# --- top level -----------------------------------------------------------
+grammar = _ rule+ _
+rule    = ident _ '=' _ alternation _ nl
+
+# --- expressions ---------------------------------------------------------
+alternation = action_seq ('/' _ action_seq)*
+action_seq  = sequence ('->' _ ident)?
+sequence    = prefixed+
+prefixed    = ('!' / '&')? postfix
+postfix     = primary ('*' / '+' / '?')?
+primary     = '(' alternation ')' / literal / range / '.' / ident_ref / '_'
+
+# --- terminals -----------------------------------------------------------
+ident       = [a-z] [a-z]*
+ident_ref   = ident
+literal     = "'" [a-z]+ "'"
+range       = '[' [a-z] '-' [a-z] ']'
+nl          = [a-z] / $
+_           = [a-z]*

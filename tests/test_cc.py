@@ -267,6 +267,61 @@ class RunTests(unittest.TestCase):
                " return a[0] + a[1] + a[2] + a[3]; }")
         self.assertEqual(self._exit_code(src), 16)
 
+    def test_struct_pointer(self):
+        src = ("struct Point { int x; int y; };"
+               " int main() { struct Point p; p.x = 5; p.y = 10;"
+               " struct Point *q = &p; return q->x + q->y; }")
+        self.assertEqual(self._exit_code(src), 15)
+
+    def test_struct_pointer_write(self):
+        src = ("struct Val { int n; };"
+               " int main() { struct Val v; v.n = 0;"
+               " struct Val *p = &v; p->n = 42; return v.n; }")
+        self.assertEqual(self._exit_code(src), 42)
+
+    def test_struct_array(self):
+        src = ("struct Pair { int a; int b; };"
+               " int main() { struct Pair arr[3];"
+               " arr[0].a = 1; arr[0].b = 2;"
+               " arr[1].a = 3; arr[1].b = 4;"
+               " arr[2].a = 5; arr[2].b = 6;"
+                " return arr[0].a + arr[1].b + arr[2].a; }")
+        self.assertEqual(self._exit_code(src), 10)
+
+    def test_struct_array_loop(self):
+        src = ("struct Pair { int a; int b; };"
+               " int main() { struct Pair arr[3]; int i;"
+               " for (i = 0; i < 3; i = i + 1) { arr[i].a = i; arr[i].b = i * 10; }"
+               " return arr[0].a + arr[1].a + arr[2].a + arr[0].b + arr[1].b + arr[2].b; }")
+        self.assertEqual(self._exit_code(src), 33)
+
+    def test_struct_as_param(self):
+        src = ("struct Pt { int x; int y; };"
+               " int dist(struct Pt p) { return p.x + p.y; }"
+               " int main() { struct Pt pt; pt.x = 3; pt.y = 7; return dist(pt); }")
+        self.assertEqual(self._exit_code(src), 10)
+
+    def test_struct_as_return(self):
+        src = ("struct Pt { int x; int y; };"
+               " struct Pt make(int a, int b) { struct Pt p; p.x = a; p.y = b; return p; }"
+               " int main() { struct Pt r = make(4, 6); return r.x + r.y; }")
+        self.assertEqual(self._exit_code(src), 10)
+
+    def test_nested_struct(self):
+        src = ("struct Inner { int a; int b; };"
+               " struct Outer { struct Inner i; int c; };"
+               " int main() { struct Outer o; o.i.a = 10; o.i.b = 20; o.c = 30;"
+               " return o.i.a + o.i.b + o.c; }")
+        self.assertEqual(self._exit_code(src), 60)
+
+    def test_nested_struct_deep(self):
+        src = ("struct A { int v; };"
+               " struct B { struct A a; int w; };"
+               " struct C { struct B b; int x; };"
+               " int main() { struct C c; c.b.a.v = 1; c.b.w = 2; c.x = 3;"
+               " return c.b.a.v + c.b.w + c.x; }")
+        self.assertEqual(self._exit_code(src), 6)
+
 
 if __name__ == "__main__":
     unittest.main()

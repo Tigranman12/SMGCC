@@ -103,13 +103,13 @@ The project is built one rung at a time. You cannot skip a rung; each stage ship
 
 | Stage | Name | What gets built | Status |
 |---|---|---|---|
-| **0** | Scaffolding | Workspace, testing framework, CI, workflow files | 🟡 In progress |
-| **1** | META II metacompiler | The pattern-matcher: rules, ordered choice, lookahead, repetition, output actions | ⚪ Not started |
-| **2** | Lexing & parsing | Use Stage 1 to parse a C subset into an **AST** | ⚪ Not started |
-| **3** | Semantic analysis | Symbol tables, type checking, scope validation | ⚪ Not started |
-| **4** | Intermediate representation | Flatten the AST into linear three-address code | ⚪ Not started |
-| **5** | Code generation | Translate IR into assembly | ⚪ Not started |
-| **6** | Self-hosting | Compile SMGCC using SMGCC | ⚪ Not started |
+| **0** | Scaffolding | Workspace, testing framework, CI, workflow files | ✅ Complete |
+| **1** | META II metacompiler | The pattern-matcher: rules, ordered choice, lookahead, repetition, output actions | ✅ Complete |
+| **2** | Lexing & parsing | Use Stage 1 to parse a C subset into an **AST** | ✅ Complete |
+| **3** | Semantic analysis | Symbol tables, type checking, scope validation | ✅ Complete |
+| **4** | Intermediate representation | Flatten the AST into linear three-address code | ✅ Complete |
+| **5** | Code generation | Translate IR into assembly | ✅ Complete |
+| **6** | Self-hosting | Compile SMGCC using SMGCC | 🟡 In Progress |
 
 ---
 
